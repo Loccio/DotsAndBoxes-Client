@@ -1,2 +1,3 @@
-# PWMProject_097518
-Progetto Programmazione web e mobile
+# DostAndBoxes
+A simple PWA implementing the game Dots and boxes using the javacript framework ReactJS.
+
