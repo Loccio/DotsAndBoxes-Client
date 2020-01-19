@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #3381ff;
+        stroke: #ffe3e3;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #3e3e3e;
+        fill-rule: evenodd;
+      }
+
+      .cls-3 {
+        fill: #ffe3e3;
+      }
+
+      .cls-4 {
+        font-size: 100px;
+        fill: #ff4b78;
+        font-family: Shrikhand;
+      }
+    </style>
+  </defs>
+  <rect id="Rettangolo_1" data-name="Rettangolo 1" class="cls-1" x="1" width="299" height="299" rx="75" ry="75"/>
+  <path id="Rettangolo_2" data-name="Rettangolo 2" class="cls-2" d="M142,43h16a107,107,0,0,1,0,214H142A107,107,0,0,1,142,43Z"/>
+  <rect id="Rettangolo_2_copia" data-name="Rettangolo 2 copia" class="cls-3" x="35" y="43" width="230" height="214" rx="107" ry="107"/>
+  <text id="dnb" class="cls-4" x="47" y="186">dnb</text>
+</svg>

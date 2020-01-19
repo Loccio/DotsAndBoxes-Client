@@ -1,0 +1,48 @@
+.wrapper
+{
+    width: 100%;
+    min-height: 100vh;
+    color: white;
+}
+
+.content
+{      
+    margin: 0 auto; 
+    max-width: 1600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+.secondary
+{
+    flex-grow: 1;
+    width: 618px;
+    display: flex;
+    flex-direction: column;
+}
+
+.gamespace
+{
+    flex-grow: 1;
+    width: 920px;
+}
+
+.btn
+{
+    width: 300px;
+}
+
+.input-number
+{
+    width: fit-content;
+    font-size: inherit;
+    font-style: inherit;
+    font-family: inherit;
+}
+
+
+
