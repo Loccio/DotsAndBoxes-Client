@@ -5,7 +5,7 @@ import MatchCPU from '../MatchCPU/MatchCPU'
 import Stats from '../Stats/Stats'
 import Friends from '../Friends/Friends'
 import Octicon, {Rocket,Tools,ChevronDown} from '@primer/octicons-react'
-import Collapse from '../../Utils/collapse';
+import Collapse from '../../Utils/collapse.js';
 
 import {BrowserRouter,Switch,Route,Link} from "react-router-dom";
 
