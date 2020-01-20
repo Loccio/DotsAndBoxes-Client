@@ -7,11 +7,13 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "netlify-lambda": "^1.6.3",
     "nodemon": "^2.0.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "serverless-http": "^2.3.0"
   },
   "proxy": "http://localhost:5555",
   "scripts": {
@@ -22,7 +24,7 @@
     "server": "nodemon server.js",
     "client": "npm start",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "deploy": "npm run build && npm run server"
+    "deploy": "npm run build && node server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
