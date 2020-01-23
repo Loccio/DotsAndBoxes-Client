@@ -76,7 +76,7 @@ export default class Line{
 	}
 
     compareTo(o) {
-		if(o==null) throw "comparing to null edge";
+		if(o===null) throw new Error("comparing to null edge");
 		var a = o.a.compareTo(o.b)<0?o.a:o.b;
 		var b = o.a.compareTo(o.b)<0?o.b:o.a;
 		var A = this.a.compareTo(this.b)<0?this.a:this.b;
@@ -85,9 +85,9 @@ export default class Line{
 		if(A.compareTo(a)>0) return 1;
 		else
 		{
-			if(A.compareTo(a)==0)
+			if(A.compareTo(a)===0)
 			{
-				if(B.compareTo(b)==0) return 0;
+				if(B.compareTo(b)===0) return 0;
 				else
 				{
 					if(B.compareTo(b)>0) return 1;
@@ -105,9 +105,9 @@ export default class Line{
 	
     equals(o)
 	{
-		if(o!=null && o instanceof Line)
+		if(o!==null && o instanceof Line)
 		{
-			if(this.compareTo(o)==0) return true;
+			if(this.compareTo(o)===0) return true;
 		}
 		return false;
 	}
@@ -142,7 +142,7 @@ export default class Line{
 	 */
 	isVertical()
 	{
-		return this.a.getY()!=this.b.getY();
+		return this.a.getY()!==this.b.getY();
 	}
 
 	

@@ -1,4 +1,4 @@
-import Dot from './Dot'
+
 /**
  * Classe che rappresenta un oggetto Box del campo da gioco. 
  * La sua responsabilit� � quella di rappresentare i dati di un quadrato.
@@ -102,7 +102,7 @@ export default class Box {
 	equals(o) {
 		if(o!=null && o instanceof Box)
 		{
-			if(this.compareTo((o)==0)) return true;
+			if(this.compareTo((o)===0)) return true;
 		}
 		return false;
 	}

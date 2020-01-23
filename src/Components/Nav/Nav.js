@@ -1,15 +1,15 @@
 import React from 'react';
 import './Nav.css';
-import Octicon, {SignIn} from '@primer/octicons-react'
-import {Link} from "react-router-dom";
-function Home()
+import Octicon,{Bookmark} from '@primer/octicons-react'
+function Home(props)
 {
+
     return(
-        <div className="nav bg-nav">
+        <div className="nav">
             <div>
               <div className="logo">
-
-                  <img className="rotating" src={require('../../logo.svg')} alt="logo"></img>
+              <Octicon icon={Bookmark}/>
+                  <h4>{props.page}</h4>
              
   
                   </div>

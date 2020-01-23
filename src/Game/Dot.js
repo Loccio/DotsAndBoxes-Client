@@ -77,9 +77,9 @@ export default class Dot{
 	
 	equals(o)
 	{
-		if(o != null && (o instanceof Dot))
+		if(o !== null && (o instanceof Dot))
 		{
-			if(this.compareTo(o)==0) return true;
+			if(this.compareTo(o)===0) return true;
 		}
 		return false;
 	}
@@ -88,14 +88,14 @@ export default class Dot{
 	compareTo(o) {
 		if(o==null)
 		{
-			throw "comparing to null Dot";
+			throw new Error("comparing to null Dot");
 		}
 		var x = o.x;
 		var y = o.y;
 		
-		if(this.x==x&&this.y==y) return 0;
+		if(this.x===x&&this.y===y) return 0;
 		
-		if(this.y>y || (this.x>x && this.y == y))
+		if(this.y>y || (this.x>x && this.y === y))
 		{
 			return 1;
 		}

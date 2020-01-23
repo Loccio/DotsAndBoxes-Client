@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom';
 import  Octicon , {Person} from '@primer/octicons-react'
 import './GameField.css';
-import MatchManager from '../../Model/MatchManager'
-import CPUMatchManager from '../../Model/CPUMatchManager'
-import UserPlayer from '../../Model/UserPlayer'
+import MatchManager from '../../Game/MatchManager'
+import CPUMatchManager from '../../Game/CPUMatchManager'
+import UserPlayer from '../../Game/UserPlayer'
 import Result from './Result/Result'
   
 
@@ -27,21 +26,14 @@ class GameField extends Component
         if(this.state.match instanceof CPUMatchManager)
         {
             this.clickLine = async (id)=>{
-                if(!this.state.match.isOver())
-                {
                     if(this.state.match.userInput)
                     {
                         var match = this.state.match;
                         match.play(id);
                         this.updateMatchState(match);
-                        if(this.state.match.currentTurn==1)
+                        if(this.state.match.currentTurn===1)
                         this.setState({cpuPlayng:true});
                     }
-                }
-                else
-                {
-                    console.log('the match is over');
-                }
             };
 
         }
@@ -56,9 +48,11 @@ class GameField extends Component
 
     }
 
+
+
     cpu =()=>{
 
-        if (this.state.match.currentTurn==0||this.state.match.isOver()) {
+        if (this.state.match.currentTurn===0||this.state.match.isOver()) {
             this.setState({ cpuPlayng: false })
             return
         }
@@ -92,20 +86,20 @@ class GameField extends Component
   
 
     linecolor(id){
-        if(this.state.match.field.getLinePlayer(id)==0)
+        if(this.state.match.field.getLinePlayer(id)===0)
         return ' line-blue'
-        if(this.state.match.field.getLinePlayer(id)==1) return ' line-red'
+        if(this.state.match.field.getLinePlayer(id)===1) return ' line-red'
         
         return ' '
     };
 
     boxcolor(id){
         var color = this.state.match.field.getBoxPlayer(id);
-        if(color==-1)
+        if(color===-1)
         return ' '
         else
         {
-            if(color==0) return ' bg-blue fillbox'
+            if(color===0) return ' bg-blue fillbox'
             else return ' bg-red fillbox'
         }
         
@@ -115,13 +109,14 @@ class GameField extends Component
     {
         if(this.state.match.currentTurn===turn)
         {
-            if(turn==0)
+            if(turn===0)
             return ' active1';
             else return ' active2';
         }
         else return '';
     }
 
+    
     gameField(x,y)
     {
         var xs = [...Array(parseInt(x,10)).keys()];

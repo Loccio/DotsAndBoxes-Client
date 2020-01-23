@@ -1,0 +1,62 @@
+.tab
+{
+    width: 100px;
+    height: 100vh;
+    position: sticky;
+    top:0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    z-index: 10;
+    box-shadow:0px 0px 5px 4px rgba(0, 0, 0, 0.096)
+}
+a
+{
+    width: fit-content;
+    height: fit-content;
+    
+}
+
+.tablink
+{
+    height: fit-content;
+    border-radius: 50%;
+    transition: all 0.1s ease;
+}
+
+.tablink:hover
+{
+    background: rgba(161, 197, 255, 0.15);
+}
+
+
+.tablink svg{
+    height: 40px;
+    width: 40px;
+    color: #445f80;
+    color: whitesmoke;
+    padding: 15px;
+}
+
+@media (max-width:1068px)
+{
+    .tab
+    {
+        position:fixed;
+        top:calc(100vh - 58px);
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+    }
+
+    .tablink svg{
+        height: 23px;
+        width: 23px;
+        padding:5px;
+        margin-top: 0px;
+    }
+
+}

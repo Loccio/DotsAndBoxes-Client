@@ -3,7 +3,6 @@ import LineManager from './LineManager'
 import BoxManager from './BoxManager'
 import Line from './Line'
 import Dot from './Dot'
-import Box from './Box'
 /**
  * La classe Field implementa l'interfaccia Field utilizzando delle Map<K,V> come strutture dati per linee e quadrati.
  *
@@ -202,7 +201,7 @@ export default class Field{
 	
 	isFull()
 	{
-		return this.boxes.getFilledBoxesCount() == this.boxes.getBoxesCount();
+		return this.boxes.getFilledBoxesCount() === this.boxes.getBoxesCount();
 	}
 
 	drawLine(line,player) 

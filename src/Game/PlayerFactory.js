@@ -1,6 +1,6 @@
 import EasyPlayer from './EasyPlayer'
 import MediumPlayer from './MediumPlayer'
-import HardPlayer from './HardPlayer'
+//import HardPlayer from './HardPlayer'
 
 export default class PlayerFactory
 {

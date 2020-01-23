@@ -24,11 +24,11 @@ export default class MatchManager
 
     play(id)
     {
-        if(this.field.getLinePlayer(id)==-1)
+        if(this.field.getLinePlayer(id)===-1&&!this.isOver())
         {
         var points = this.field.drawLine(id,this.currentTurn);
         var player = this.players[this.currentTurn];
-        if(points==0) this.changeTurn();
+        if(points===0) this.changeTurn();
         player.Score(points);
         this.checkOver();
         }    
@@ -36,24 +36,30 @@ export default class MatchManager
 
     cpuPlay()
     {
+        if(!this.isOver())
+        {
         var id  = this.players[1].play(new PlayerView(this.field));
         var points = this.field.drawLine(id,this.currentTurn);
         var player = this.players[this.currentTurn];
-        if(points==0) this.changeTurn();
+        if(points===0) this.changeTurn();
         player.Score(points);
         this.checkOver();
+        }
     }
       
 
     checkOver()
     {
         if(this.field.isFull())
+        {
                 this.isover = true;
+                this.userInput = false;
+        }
     }
 
     changeTurn()
     {
-        if(this.currentTurn == 0)
+        if(this.currentTurn === 0)
         {
             this.currentTurn = 1;
             this.userInput = false;

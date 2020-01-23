@@ -51,17 +51,18 @@ button:focus {outline:0;}
 
 .bg-light
 {
-  background-color:#6b84a1;
+  background-color:#445f80;
 }
 
 .pop{
   margin: 10px;
   background-color:#324b66;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 1rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  box-shadow:0px 0px 5px 4px rgba(0, 0, 0, 0.13)
 }
 
 .pop-header

@@ -92,7 +92,7 @@ export default class LineManager{
 	
 	getLineStatus(line) {
 		var l= this.lines.get(line.toString());
-		if(l!=null)return l.check()==true;
+		if(l!=null)return l.check()===true;
 		else
 			return false;
 	}

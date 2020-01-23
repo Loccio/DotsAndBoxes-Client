@@ -73,7 +73,7 @@ export default class PlayerView {
 	{
 		var to_return = [];
 		this.possible_moves.forEach(e => {
-			if(this.evaluateMove(e)==3)
+			if(this.evaluateMove(e)===3)
 			{
 			    to_return.push(e);
 			}
@@ -91,7 +91,7 @@ export default class PlayerView {
 	 */
 	getNonThirdEdges()
 	{
-		return this.possible_moves.filter(e => this.evaluateMove(e)!=2);
+		return this.possible_moves.filter(e => this.evaluateMove(e)!==2);
 	}
 	
 	
@@ -191,7 +191,7 @@ export default class PlayerView {
 	{
 		var result = false;
 		this.possible_moves.forEach(e=>{
-			if(e.toString()==line.toString()) return (result = true);
+			if(e.toString()===line.toString()) return (result = true);
 		})
 		return result;
 	}

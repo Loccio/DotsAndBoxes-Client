@@ -15,7 +15,7 @@ export default class Result extends Component{
     render()
     {
         return <>{
-            this.state.result.winnerNumber==0?
+            this.state.result.winnerNumber===0?
         <div className="flex-row score1 score-res active1" >
          
         <div className="circle bg-main"><Octicon className="p text-blue" icon={Person}></Octicon></div>

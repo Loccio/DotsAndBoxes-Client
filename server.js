@@ -8,10 +8,8 @@ app.get('/', function(req, res) {
   res.sendFile(path.join(__dirname, '/build', 'index.html'));
 });
 
-app.get('/api/hi',(req,res,next)=>{
-
-    res.json({message : "Hi from Express Server"});
-
+app.get('/api/online',(req,res,next)=>{
+    res.json({response:true});
 })
 
 app.listen(port, ()=> console.log("Server listening on port " + port));

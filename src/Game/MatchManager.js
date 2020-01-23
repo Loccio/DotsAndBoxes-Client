@@ -19,12 +19,12 @@ export default class MatchManager
 
     play(id)
     {
-        if(this.isover==false)
+        if(this.isover===false)
         {
-            if(this.field.getLinePlayer(id)==-1)
+            if(this.field.getLinePlayer(id)===-1)
             {
             var points = this.field.drawLine(id,this.currentTurn);
-            if(points == 0) 
+            if(points === 0) 
               this.changeTurn();
             else 
             {
@@ -44,7 +44,7 @@ export default class MatchManager
 
     changeTurn()
     {
-        if(this.currentTurn == 0)
+        if(this.currentTurn === 0)
         this.currentTurn = 1;
         else
         this.currentTurn = 0;

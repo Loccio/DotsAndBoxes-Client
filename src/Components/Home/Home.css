@@ -29,6 +29,8 @@
 {
     flex-grow: 1;
     width: 920px;
+    display: flex;
+    align-items: stretch;
 }
 
 .btn
