@@ -1,6 +1,7 @@
 import React from 'react';
 import './Nav.css';
-import Octicon,{Bookmark} from '@primer/octicons-react'
+import Octicon,{Bookmark,ArrowLeft} from '@primer/octicons-react'
+import {Link} from 'react-router-dom'
 function Home(props)
 {
 
@@ -8,7 +9,14 @@ function Home(props)
         <div className="nav">
             <div>
               <div className="logo">
-              <Octicon icon={Bookmark}/>
+                  {props.page!='Home'?
+
+                  <Link className="back" to="/"><Octicon icon={ArrowLeft}></Octicon></Link>
+                  
+                  :
+                  
+                  <Octicon icon={Bookmark}/>}
+              
                   <h4>{props.page}</h4>
              
   

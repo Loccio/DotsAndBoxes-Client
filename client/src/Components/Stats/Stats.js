@@ -15,6 +15,6 @@ export default class Stats extends Component
     {
         return <>
         <Nav page='Stats'></Nav>
-        </>;
+        </>
     }
 }

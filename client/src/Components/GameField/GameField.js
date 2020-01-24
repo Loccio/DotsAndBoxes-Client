@@ -16,6 +16,11 @@ class GameField extends Component
     constructor(props)
     {
         super(props);
+        this.initGame(props);        
+    }
+
+    initGame(props)
+    {
         this.state = {
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
@@ -23,6 +28,7 @@ class GameField extends Component
             cpuPlayng:false
 
         }
+
         if(this.state.match instanceof CPUMatchManager)
         {
             this.clickLine = async (id)=>{
@@ -45,7 +51,11 @@ class GameField extends Component
                 this.updateMatchState(match);
             }
         }
+    }
 
+    componentWillReceiveProps(props) {
+        this.initGame(props);
+        this.setState(this.state);
     }
 
 
@@ -79,7 +89,7 @@ class GameField extends Component
             case 'dummy':return new CPUMatchManager(field,new UserPlayer('You',0),level);
             case 'medium':return new CPUMatchManager(field,new UserPlayer('You',0),level);
             case 'impossible': return new CPUMatchManager(field,new UserPlayer('You',0),level);
-            default: return new MatchManager(field, new UserPlayer('Player 1',0),new UserPlayer('Player 2',1));
+            default: return new MatchManager(field, new UserPlayer('You',0),new UserPlayer('Player 2',1));
         }
     }
 

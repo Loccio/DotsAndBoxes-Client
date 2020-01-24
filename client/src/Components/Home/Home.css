@@ -20,15 +20,15 @@
 .secondary
 {
     flex-grow: 1;
-    width: 618px;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
 }
 
 .gamespace
 {
+    
     flex-grow: 1;
-    width: 920px;
     display: flex;
     align-items: stretch;
 }
@@ -46,5 +46,18 @@
     font-family: inherit;
 }
 
+
+@media (max-width:1168px)
+{
+    .secondary
+    {
+        max-width: unset;
+    }
+
+    .gamespace
+    {
+        width: 100%;
+    }
+}
 
 

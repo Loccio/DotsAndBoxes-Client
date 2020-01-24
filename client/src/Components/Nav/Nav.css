@@ -68,6 +68,17 @@
     background-color:rgb(204, 19, 80);
 }
 
+.back
+{
+  margin-right: 5px;
+}
+
+.back svg
+{
+  color:whitesmoke;
+  margin:0;
+}
+
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {
     from {

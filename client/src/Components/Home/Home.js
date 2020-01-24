@@ -29,10 +29,11 @@ class Home extends Component
     {
         return(
         <div className="wrapper bg-main">
-        <BrowserRouter>
+        
             <Nav page='Home'/>
             <div className="content">
                 <div className="pop gamespace" id="gamespace">
+                <BrowserRouter>
             <Switch>
              <Route path="/match">
                 <MatchCPU level={this.state.level} x={this.state.x} y={this.state.y} />
@@ -63,7 +64,7 @@ class Home extends Component
 
              </Route>
              
-            </Switch>
+            </Switch> </BrowserRouter>
             </div>
 
             <div className="secondary">
@@ -71,7 +72,7 @@ class Home extends Component
             <Friends></Friends>
             </div>
             </div>
-        </BrowserRouter>
+       
         </div>
     )
     }
