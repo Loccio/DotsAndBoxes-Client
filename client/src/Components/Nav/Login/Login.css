@@ -1,0 +1,70 @@
+.login
+{
+    height: fit-content;
+    padding: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+    background-color: rgb(231, 30, 97);
+    color: white;
+    font-style: inherit;
+    font-size: 1rem;
+    font-family: inherit;
+    margin-right:10px;
+    border-radius: 50px;
+    border:0;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    vertical-align: middle;
+}
+
+.login:hover
+{
+    background-color:rgb(204, 19, 80);
+}
+
+.loginform
+{
+    width: 380px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.loginform span
+{
+    align-self: flex-start;
+    font-size: 60%;
+    color: rgb(184, 202, 201);
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.loginform p
+{
+    font-size: 80%;
+}
+
+
+
+.active
+{
+    border-bottom: 3px solid rgb(231, 30, 97);
+}
+
+input
+{
+    outline: 0;
+    width: 340px!important;
+    font-size: inherit;
+    margin:10px;
+    border-radius: 25px;
+    border:0;
+    padding:10px;
+    background-color: #3d5674;
+    color: whitesmoke;
+}
+
+.loginform button
+{
+    width: 360px!important;
+}

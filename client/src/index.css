@@ -178,7 +178,13 @@ strong
 a
 {
   text-decoration: none;
-  color:#0e6aff;
+  color:#3a7de9;
+  cursor: pointer;
+}
+
+a:hover
+{
+  color:#5796fa;
 }
 
 
@@ -230,8 +236,8 @@ svg
     display: none;
     flex-direction: column;
     align-items:center;
-    justify-content: center;
     overflow: hidden;
+    padding-top: 15vh;
 }
 
 .pop-overlay-close

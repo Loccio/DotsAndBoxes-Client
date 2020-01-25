@@ -2,12 +2,16 @@ import React from 'react';
 import './Nav.css';
 import Octicon,{Bookmark,ArrowLeft} from '@primer/octicons-react'
 import {Link} from 'react-router-dom'
+import ServerConnection from './ServerConnection/ServerConnection'
+import Login from './Login/Login'
 function Home(props)
 {
+   
 
     return(
         <div className="nav">
-            <div>
+          
+            <div className='container'>
               <div className="logo">
                   {props.page!=='Home'?
 
@@ -22,8 +26,9 @@ function Home(props)
   
                   </div>
               <div className="user">
-                  <button className="login"> Sign in </button>
-              </div>
+                  <ServerConnection/>
+                 <Login/>
+             </div>
            </div>
         </div>
     )

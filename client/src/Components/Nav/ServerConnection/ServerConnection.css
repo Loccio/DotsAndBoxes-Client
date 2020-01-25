@@ -1,0 +1,30 @@
+.online , .offline
+{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    color: rgb(173, 191, 194);
+}
+.online svg , .offline svg
+{
+    height: 24px;
+    width: 24px;
+}
+
+.online::before
+{
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: rgb(49, 197, 111);
+    border-radius: 50%;
+}
+
+.offline::before
+{
+    content: '';
+    width: 12px;
+    height: 12px;
+    background-color: rgb(172, 182, 184);
+    border-radius: 50%;
+}
