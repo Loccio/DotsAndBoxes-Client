@@ -9,7 +9,7 @@ function Home(props)
         <div className="nav">
             <div>
               <div className="logo">
-                  {props.page!='Home'?
+                  {props.page!=='Home'?
 
                   <Link className="back" to="/"><Octicon icon={ArrowLeft}></Octicon></Link>
                   

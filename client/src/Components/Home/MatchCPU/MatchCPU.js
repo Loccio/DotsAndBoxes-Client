@@ -19,17 +19,10 @@ class MatchCPU extends Component
     }
 
 
-    quitMatch()
-    {
-
-    }
-
-
-
     levelOverlay()
     {
         var current = document.getElementById('leveloverlay').style.display;
-        if(current!='flex')
+        if(current!=='flex')
         {
             document.getElementById('leveloverlay').style.display = 'flex';
         }

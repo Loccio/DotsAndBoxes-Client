@@ -16,27 +16,37 @@ class GameField extends Component
     constructor(props)
     {
         super(props);
-        this.initGame(props);        
-    }
-
-    initGame(props)
-    {
         this.state = {
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
             match: this.getNewMatchManager(props.field,props.level),
             cpuPlayng:false
 
-        }
+        };
+        this.initGame(props,false);        
+    }
 
-        if(this.state.match instanceof CPUMatchManager)
+    initGame(props,setState)
+    {
+        if(setState) 
         {
-            this.clickLine = async (id)=>{
+            this.setState( {
+            x:props.field.getWidth()-1,
+            y:props.field.getHeight()-1,
+            match: this.getNewMatchManager(props.field,props.level),
+            cpuPlayng:false
+
+        });
+       }
+
+        if(props.level !== 'pvp')
+        {
+            this.clickLine = (id)=>{
                     if(this.state.match.userInput)
                     {
                         var match = this.state.match;
                         match.play(id);
-                        this.updateMatchState(match);
+                        this.setState({match:match});
                         if(this.state.match.currentTurn===1)
                         this.setState({cpuPlayng:true});
                     }
@@ -48,19 +58,16 @@ class GameField extends Component
             {
                 var match = this.state.match;
                 match.play(id);
-                this.updateMatchState(match);
+                this.setState({match:match});
             }
         }
     }
 
-    componentWillReceiveProps(props) {
-        this.initGame(props);
-        this.setState(this.state);
+    UNSAFE_componentWillReceiveProps(props) {
+        this.initGame(props,true);
     }
-
-
-
-    cpu =()=>{
+    
+    cpuPlay =()=>{
 
         if (this.state.match.currentTurn===0||this.state.match.isOver()) {
             this.setState({ cpuPlayng: false })
@@ -68,18 +75,13 @@ class GameField extends Component
         }
         var match = this.state.match;
         match.cpuPlay();
-        this.updateMatchState(match);
+        this.setState({match:match});
                   
     }
 
     componentDidUpdate()
     {
-       if(this.state.cpuPlayng)setTimeout(this.cpu,this.PAUSE);
-    }
-
-    updateMatchState(match)
-    {
-        this.setState({match:match});
+       if(this.state.cpuPlayng)setTimeout(this.cpuPlay,this.PAUSE);
     }
 
     getNewMatchManager(field,level)
