@@ -69,16 +69,22 @@ button:focus {outline:0;}
 {
   border-bottom: 1px solid #3d5674;
   padding-bottom: 5px;
+  margin-bottom:10px;
   display: flex;
   align-content: center;
   justify-content:flex-start;
   color: rgb(221, 221, 221);
+  vertical-align: middle;
 }
 
 .pop-header-icon
 {
   height:20px;
   width:20px
+}
+.mlaut
+{
+    margin-left: auto;
 }
 
 .pop-header-button
@@ -167,6 +173,11 @@ strong
   justify-content: center;
   align-items: center;
 }
+.wrap
+{
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
 
 .flex-column
 {
@@ -177,34 +188,50 @@ strong
 
 a
 {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  color:#3a7de9;
   cursor: pointer;
 }
 
-a:hover
+#matchmaking span
 {
-  color:#5796fa;
+  align-self: flex-start;
+  color: #f0f0f0;
+  font-size: 15px;
 }
 
+input[type="text"]
+{
+    outline: 0;
+    margin-bottom: 10px;
+    padding:5px;
+    width: 290px!important;
+    font-size: inherit;
+    border-radius: 3px;
+    border:2px solid transparent;
+    background-color: #f0f0f0;
+    color: rgb(36, 36, 36);
+}
 
 .btn
 {
   font-size: inherit;
   font-family: inherit;
+  margin-top: 10px;
   padding: 5px;
-  margin: 10px;
   background-color: rgb(255, 16, 96);
-  color: white;
-  border:2px solid rgb(255, 16, 96);
-  border-radius: 25px;
+  color: rgba(255, 255, 255, 0.883);
+  border:0px solid rgb(189, 21, 77);
+  border-bottom:5px solid rgb(189, 21, 77);
+  border-radius: 3px;
   cursor: pointer;
   transition: all .1s ease-in-out;
 }
 .btn-blue
 {
   background:#0e6aff ;
-  border:2px solid #0e6aff;
+  border-bottom:5px solid #235fc0;
 }
 
 .btn-blue:hover
@@ -222,7 +249,14 @@ svg
   font-size: inherit!important;
 }
 
-
+.quit
+{
+    color: rgb(228, 228, 228);
+    margin:0;
+    height: 24px;
+    width: auto;
+    margin-right: 10px;
+}
 
 .overlay
 {

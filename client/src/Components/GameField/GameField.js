@@ -5,7 +5,7 @@ import MatchManager from '../../Game/MatchManager'
 import CPUMatchManager from '../../Game/CPUMatchManager'
 import UserPlayer from '../../Game/UserPlayer'
 import Result from './Result/Result'
-  
+import { Redirect } from 'react-router-dom';
 
 
 class GameField extends Component
@@ -17,11 +17,12 @@ class GameField extends Component
     {
         super(props);
         this.state = {
+            user:props.user,
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
-            match: this.getNewMatchManager(props.field,props.level),
-            cpuPlayng:false
-
+            match: this.getNewMatchManager(props.field,props.level,props.user),
+            cpuPlayng:false,
+            currentlevel: props.level
         };
         this.initGame(props,false);        
     }
@@ -33,38 +34,56 @@ class GameField extends Component
             this.setState( {
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
-            match: this.getNewMatchManager(props.field,props.level),
+            match: this.getNewMatchManager(props.field,props.level,props.user),
             cpuPlayng:false
 
         });
        }
-
-        if(props.level !== 'pvp')
-        {
-            this.clickLine = (id)=>{
-                    if(this.state.match.userInput)
-                    {
-                        var match = this.state.match;
-                        match.play(id);
-                        this.setState({match:match});
-                        if(this.state.match.currentTurn===1)
-                        this.setState({cpuPlayng:true});
-                    }
-            };
-
-        }
-        else this.clickLine = (id)=>{
+       var level = props.level
+       switch(level)
+       {
+           case 'pvp': this.clickLine = (id)=>{
             if(this.state.match.userInput)
             {
                 var match = this.state.match;
                 match.play(id);
                 this.setState({match:match});
             }
-        }
+        } 
+        break;
+
+           case 'online': 
+           this.clickLine = () => {
+               console.log('nope');
+               //play
+               //change turn
+               //update server
+            }
+           break;
+
+           default: 
+           this.clickLine = (id)=>{
+            if(this.state.match.userInput)
+            {
+                var match = this.state.match;
+                match.play(id);
+                this.setState({match:match});
+                if(this.state.match.currentTurn===1)
+                this.setState({cpuPlayng:true});
+            }
+    };
+           break;
+       }
     }
 
     UNSAFE_componentWillReceiveProps(props) {
+        if(props.level!== this.state.currentlevel)
         this.initGame(props,true);
+        else
+        {
+            //update online match
+            //set this player turn
+        }
     }
     
     cpuPlay =()=>{
@@ -84,14 +103,14 @@ class GameField extends Component
        if(this.state.cpuPlayng)setTimeout(this.cpuPlay,this.PAUSE);
     }
 
-    getNewMatchManager(field,level)
+    getNewMatchManager(field,level,user)
     {
         switch (level)
         {
-            case 'dummy':return new CPUMatchManager(field,new UserPlayer('You',0),level);
-            case 'medium':return new CPUMatchManager(field,new UserPlayer('You',0),level);
-            case 'impossible': return new CPUMatchManager(field,new UserPlayer('You',0),level);
-            default: return new MatchManager(field, new UserPlayer('You',0),new UserPlayer('Player 2',1));
+            case 'dummy':return new CPUMatchManager(field,new UserPlayer(user,0),level);
+            case 'medium':return new CPUMatchManager(field,new UserPlayer(user,0),level);
+            case 'impossible': return new CPUMatchManager(field,new UserPlayer(user,0),level);
+            default: return new MatchManager(field, new UserPlayer(user,0),new UserPlayer('Player 2',1));
         }
     }
 
@@ -237,6 +256,7 @@ class GameField extends Component
 
     render()
     {
+        if(!this.state.user) return <Redirect to='/'></Redirect>
         return(
         this.gameField(this.state.x,this.state.y))
     }

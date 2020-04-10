@@ -1,9 +1,7 @@
 import React from 'react';
 import './Nav.css';
-import Octicon,{Bookmark,ArrowLeft} from '@primer/octicons-react'
-import {Link} from 'react-router-dom'
+import Octicon,{Bookmark} from '@primer/octicons-react'
 import ServerConnection from './ServerConnection/ServerConnection'
-import Login from './Login/Login'
 function Home(props)
 {
    
@@ -13,13 +11,7 @@ function Home(props)
           
             <div className='container'>
               <div className="logo">
-                  {props.page!=='Home'?
-
-                  <Link className="back" to="/"><Octicon icon={ArrowLeft}></Octicon></Link>
-                  
-                  :
-                  
-                  <Octicon icon={Bookmark}/>}
+                  <Octicon icon={Bookmark}/>
               
                   <h4>{props.page}</h4>
              
@@ -27,7 +19,7 @@ function Home(props)
                   </div>
               <div className="user">
                   <ServerConnection/>
-                 <Login/>
+                 
              </div>
            </div>
         </div>

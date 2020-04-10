@@ -25,6 +25,42 @@
     content: '';
     width: 12px;
     height: 12px;
-    background-color: rgb(172, 182, 184);
+    background-color: rgb(224, 68, 94);
     border-radius: 50%;
 }
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+  }
+  .tooltip .tooltiptext {
+    font-size: 18px;
+    visibility: hidden;
+    width: 180px;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    right: 130%;
+    z-index: 1;
+  }
+
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 38%; /* At the bottom of the tooltip */
+    left: 100%;
+    margin-right:5px ;
+    border-width: 6px;
+    border-style: solid;
+    border-color:  transparent  transparent transparent #fff;
+  }
+  

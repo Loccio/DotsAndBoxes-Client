@@ -11,10 +11,11 @@ class MatchCPU extends Component
     {
         super(props);
         this.state = {
+            user:props.username,
             level:props.level,
-            x:props.x,
-            y:props.y,
-            field : new Field(props.y+1,props.x+1)
+            x:7,
+            y:7,
+            field : new Field(8,8)
         }
     }
 
@@ -35,6 +36,7 @@ class MatchCPU extends Component
     onLevelChange = (e) =>
     {
         this.setState({
+                
                 level:e.currentTarget.value,
                 field: new Field(this.state.y+1,this.state.x+1)
             });
@@ -62,17 +64,17 @@ class MatchCPU extends Component
             </div>
 
 
-        <div className="pop-header" ><span><Octicon className="pop-header-icon" icon={Play}></Octicon>DOTSANDBOXES</span> 
+        <div className="pop-header" ><span><Octicon className="pop-header-icon" icon={Play}></Octicon>PLAY</span> 
 
         <div className="modeinfo"  onClick={this.levelOverlay}>{this.state.level} <Octicon icon={ChevronDown}/></div> 
         
-        <Link onClick={this.quitMatch} to="/"><Octicon className="quit text-red" icon={X}></Octicon></Link>
+        <Link onClick={this.quitMatch} to="/"><Octicon className="quit" icon={X}></Octicon></Link>
         </div>
         
         
         
         <div className="flex-column fit-content">
-           <GameField field={this.state.field} level={this.state.level}></GameField>
+           <GameField field={this.state.field} level={this.state.level} user={this.state.user}></GameField>
         </div>
         </div>
         

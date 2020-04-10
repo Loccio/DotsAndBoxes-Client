@@ -27,7 +27,12 @@ export default class ServerConnection extends Component{
 
     render()
     {
-        return <div className={this.state.connection?'online':'offline'}><Octicon icon={Server}/></div> 
+        return <div className="tooltip">
+            <div className={this.state.connection?'online':'offline'}><Octicon icon={Server}/>
+        </div> 
+            <span className="tooltiptext">{this.state.connection?'Server connected!':'Server disconnected!'}
+            </span>
+        </div> 
        
     }
 
