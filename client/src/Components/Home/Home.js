@@ -17,7 +17,7 @@ class Home extends Component
             username:'',
             room:'',
             message: '',
-            level:'medium',
+            level:'dummy',
         };
     }
 

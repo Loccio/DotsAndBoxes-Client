@@ -17,14 +17,33 @@ class GameField extends Component
     {
         super(props);
         this.state = {
+            socket:props.socket,
             user:props.user,
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
-            match: this.getNewMatchManager(props.field,props.level,props.user),
+            match: this.getNewMatchManager(props.field,props.level,props.user,props.secondplayer),
             cpuPlayng:false,
-            currentlevel: props.level
+            currentlevel: props.level,
+            secondplayer:props.secondplayer,
         };
         this.initGame(props,false);        
+    }
+
+    componentDidMount()
+    {
+       if(this.state.socket)
+       {
+        this.state.socket.on('startgame',()=>{
+           var match = this.state.match;
+           match.changeTurn();
+           this.setState({match:match});
+        });
+        this.state.socket.on('drawline',(id)=>{
+            var match = this.state.match;
+                match.play(id);
+                this.setState({match:match});
+        });
+    }
     }
 
     initGame(props,setState)
@@ -35,7 +54,8 @@ class GameField extends Component
             x:props.field.getWidth()-1,
             y:props.field.getHeight()-1,
             match: this.getNewMatchManager(props.field,props.level,props.user),
-            cpuPlayng:false
+            cpuPlayng:false,
+            currentlevel:props.level,
 
         });
        }
@@ -53,11 +73,17 @@ class GameField extends Component
         break;
 
            case 'online': 
-           this.clickLine = () => {
-               console.log('nope');
-               //play
-               //change turn
-               //update server
+           var match = this.state.match;
+           match.changeTurn();
+           this.setState({match:match});
+           this.clickLine = (id) => {
+            if(this.state.match.currentTurn===0&&this.state.match.userInput)
+            {
+                var match = this.state.match;
+                match.play(id);
+                this.state.socket.emit('drawline',id);
+                this.setState({match:match});
+            }
             }
            break;
 
@@ -103,14 +129,15 @@ class GameField extends Component
        if(this.state.cpuPlayng)setTimeout(this.cpuPlay,this.PAUSE);
     }
 
-    getNewMatchManager(field,level,user)
+    getNewMatchManager(field,level,user,secondplayer)
     {
         switch (level)
         {
             case 'dummy':return new CPUMatchManager(field,new UserPlayer(user,0),level);
             case 'medium':return new CPUMatchManager(field,new UserPlayer(user,0),level);
             case 'impossible': return new CPUMatchManager(field,new UserPlayer(user,0),level);
-            default: return new MatchManager(field, new UserPlayer(user,0),new UserPlayer('Player 2',1));
+            case 'pvp':return new MatchManager(field, new UserPlayer(user+' 1',0),new UserPlayer(user+' 2',1))
+            default: return new MatchManager(field, new UserPlayer(user,0),new UserPlayer(secondplayer,1));
         }
     }
 

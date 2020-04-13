@@ -64,3 +64,7 @@
     border-color:  transparent  transparent transparent #fff;
   }
   
+  .alert-icon
+  {
+    color: rgb(243, 174, 96);
+  }

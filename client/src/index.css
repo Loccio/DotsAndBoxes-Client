@@ -22,6 +22,22 @@ html::-webkit-scrollbar,body::-webkit-scrollbar
   background: rgba(51, 51, 51, 0.5);
 }
 
+.link
+{
+  display: inline;
+  cursor: pointer;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.061);
+  width: fit-content;
+  border-radius: 10px;
+  padding-right:15px;
+  padding-left:15px
+}
+.link:hover
+{
+  background-color:rgba(0, 0, 0, 0.171) ;
+}
+
 .font-logo
 {
   font-family: Shrikhand;
@@ -216,7 +232,7 @@ input[type="text"]
 
 .btn
 {
-  font-size: inherit;
+  font-size: 1rem;
   font-family: inherit;
   margin-top: 10px;
   padding: 5px;
@@ -247,6 +263,42 @@ svg
 {
   margin: 5px;
   font-size: inherit!important;
+}
+
+.btn-icon
+{
+  font-size: 1rem;
+  height:38px;
+  width: auto;
+  padding: 5px;
+  background: #d1d1d1;
+  color: rgb(73, 73, 73);
+  margin: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px
+}
+
+.btn-iconed
+{
+  font-size: 1.2rem;
+  font-family: inherit;
+  font-weight:500;
+  height: 38px;
+  padding: 5px;
+  background-color: #f0f0f0;
+  color: rgb(73, 73, 73);
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  cursor: pointer;
+  transition: all .1s ease-in-out;
+  width:100px;
+  display: flex;
+  justify-content: center;
+}
+.btn-iconed:hover
+{
+  background-color: #d1d1d1;
 }
 
 .quit

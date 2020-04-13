@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './ServerConnection.css'
-import Octicon, {Server} from '@primer/octicons-react'
+import Octicon, {Server, Alert} from '@primer/octicons-react'
 export default class ServerConnection extends Component{
 
     constructor(props)
@@ -28,9 +28,11 @@ export default class ServerConnection extends Component{
     render()
     {
         return <div className="tooltip">
-            <div className={this.state.connection?'online':'offline'}><Octicon icon={Server}/>
+            <div className={this.state.connection?'online':'offline'}>
+                <Octicon icon={Server}/> 
+                {this.state.connection? null : <Octicon className='alert-icon' icon={Alert}></Octicon>}
         </div> 
-            <span className="tooltiptext">{this.state.connection?'Server connected!':'Server disconnected!'}
+            <span className="tooltiptext">{this.state.connection?'Server online!':'Server offline!'}
             </span>
         </div> 
        

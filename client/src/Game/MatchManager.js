@@ -48,7 +48,6 @@ export default class MatchManager
         this.currentTurn = 1;
         else
         this.currentTurn = 0;
-
     }
     
     isOver()

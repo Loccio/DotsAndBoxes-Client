@@ -22,12 +22,16 @@ export default class Chat extends Component
             room:this.props.room,
             user:this.props.user,
             messages: [],
+            socket:this.props.socket,
         };
     }
 
     componentDidMount()
     {
-        this.joinChat();
+        this.state.socket.on('message',(message)=>
+        {
+            this.printMessage(message)
+        })
     }
 
     componentDidUpdate()
@@ -35,21 +39,17 @@ export default class Chat extends Component
         document.getElementById("message-board").scrollTop = document.getElementById("message-board").scrollHeight;  
     }
 
-    joinChat()
-    {
-        var msgs = this.state.messages;
-        msgs.push(new ChatMessage(null,this.state.user+' joined the room "'+this.state.room+'".'));
-        msgs.push(new ChatMessage('Second Player','Test message from a second player in this room!'));
-        this.setState({
-            messages:msgs
-        });
-    }
-
     sendMessage(text)
     {
         if(text===''||!text) return;
+        var msg = new ChatMessage(this.state.user,text);
+        this.state.socket.emit('message',msg);
+    }
+
+    printMessage(message)
+    {
         var msgs = this.state.messages;
-        msgs.push(new ChatMessage(this.state.user,text));
+        msgs.push(message);
         this.setState({
             messages:msgs
         });
@@ -61,7 +61,7 @@ export default class Chat extends Component
         return <div className="pop chat padding-10">
 
         <div className="pop-header wide">
-            <span ><Octicon className="pop-header-icon" icon={Comment}></Octicon>CHAT</span>
+    <span ><Octicon className="pop-header-icon" icon={Comment}></Octicon>CHAT</span>
            
         </div>
         <div className="message-board" id='message-board'>
