@@ -75,7 +75,7 @@ export default class Chat extends Component
             }
         </div>
         <div className='input-board'>
-            <input className='text-input' type='text' id='message-text'
+            <input className='text-input' type='text' id='message-text' placeholder='Type a message...'
              onKeyDown = {(e)=>{
                  if(e.keyCode === 13)
                  {

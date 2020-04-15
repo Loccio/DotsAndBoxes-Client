@@ -204,6 +204,11 @@ export default class Field{
 		return this.boxes.getFilledBoxesCount() === this.boxes.getBoxesCount();
 	}
 
+	isEmpty()
+	{
+		return this.lines.getAvailable().length === this.lines.getSize();
+	}
+
 	drawLine(line,player) 
 	{	
 	   this.lines.draw(line,player);

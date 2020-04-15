@@ -25,6 +25,11 @@ export default class LineManager{
 		this.generateVer(h,w);
 		
 	}
+
+	getSize()
+	{
+		return this.lines.size;
+	}
 	
 	/**
 	 * genera le linee orizzontali presenti nel campo da gioco di dimensioni h e w

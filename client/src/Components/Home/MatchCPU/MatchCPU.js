@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import './MatchCPU.css';
-import GameField from '../../GameField/GameField'
+import SinglePlayerGameField from '../../GameField/SinglePlayerGameField';
+import TwoPlayerGameField from '../../GameField/TwoPlayerGameField';
 import { Link } from 'react-router-dom';
-import Octicon,{X,Play,ChevronDown} from '@primer/octicons-react';
+import Octicon,{X,Play,ChevronDown,Zap} from '@primer/octicons-react';
 import Field from '../../../Game/Field';
 
 class MatchCPU extends Component
@@ -15,8 +16,9 @@ class MatchCPU extends Component
             level:props.level,
             x:7,
             y:7,
-            field : new Field(8,8)
+            field: new Field(8,8),
         }
+        this.gamefield = React.createRef();
     }
 
 
@@ -43,10 +45,24 @@ class MatchCPU extends Component
         this.levelOverlay();
     }
 
+    onRestart()
+    {
+        this.setState({
+            field: new Field(this.state.y+1,this.state.x+1),
+            over:false
+        });
+    }
+
+    onMatchEnd= ()=>
+    {
+        this.setState({
+                over:true
+            });
+    }
 
     render()
     {
-        return(<div className="wide padding-10">
+        return(<div className="wide">
 
             
           <div className="overlay" id="leveloverlay">
@@ -71,11 +87,21 @@ class MatchCPU extends Component
         <Link onClick={this.quitMatch} to="/"><Octicon className="quit" icon={X}></Octicon></Link>
         </div>
         
-        
-        
+        <div className='wide'>
+        {this.state.over?
+        <div className='restart'>
+            <div className='flex-column restart-form'><Octicon className="btn-icon" icon={Zap}></Octicon>
+        <a className='btn-iconed' onClick={()=>this.onRestart()}>Play Again</a></div>
+        </div>:null} 
         <div className="flex-column fit-content">
-           <GameField field={this.state.field} level={this.state.level} user={this.state.user}></GameField>
-        </div>
+        
+            {this.state.level==='pvp'?
+            <TwoPlayerGameField field={this.state.field} level={this.state.level} user={this.state.user} onMatchEnd={this.onMatchEnd}></TwoPlayerGameField>
+            :
+            <SinglePlayerGameField field={this.state.field} level={this.state.level} user={this.state.user} onMatchEnd={this.onMatchEnd} ></SinglePlayerGameField>
+            
+        }
+        </div></div>
         </div>
         
     )

@@ -7,127 +7,26 @@ import UserPlayer from '../../Game/UserPlayer'
 import Result from './Result/Result'
 import { Redirect } from 'react-router-dom';
 
-
 class GameField extends Component
 {
-    PAUSE = 150;
-    clickLine = ()=>{};
-
     constructor(props)
     {
         super(props);
         this.state = {
-            socket:props.socket,
-            user:props.user,
-            x:props.field.getWidth()-1,
-            y:props.field.getHeight()-1,
-            match: this.getNewMatchManager(props.field,props.level,props.user,props.secondplayer),
+            socket:this.props.socket,
+            user:this.props.user,
+            x:this.props.field.getWidth()-1,
+            y:this.props.field.getHeight()-1,
+            match: this.getNewMatchManager(this.props.field,this.props.level,this.props.user,this.props.secondplayer),
             cpuPlayng:false,
-            currentlevel: props.level,
-            secondplayer:props.secondplayer,
-        };
-        this.initGame(props,false);        
+            currentlevel: this.props.level,
+            secondplayer:this.props.secondplayer,
+        };   
     }
 
-    componentDidMount()
-    {
-       if(this.state.socket)
-       {
-        this.state.socket.on('startgame',()=>{
-           var match = this.state.match;
-           match.changeTurn();
-           this.setState({match:match});
-        });
-        this.state.socket.on('drawline',(id)=>{
-            var match = this.state.match;
-                match.play(id);
-                this.setState({match:match});
-        });
-    }
-    }
 
-    initGame(props,setState)
-    {
-        if(setState) 
-        {
-            this.setState( {
-            x:props.field.getWidth()-1,
-            y:props.field.getHeight()-1,
-            match: this.getNewMatchManager(props.field,props.level,props.user),
-            cpuPlayng:false,
-            currentlevel:props.level,
 
-        });
-       }
-       var level = props.level
-       switch(level)
-       {
-           case 'pvp': this.clickLine = (id)=>{
-            if(this.state.match.userInput)
-            {
-                var match = this.state.match;
-                match.play(id);
-                this.setState({match:match});
-            }
-        } 
-        break;
-
-           case 'online': 
-           var match = this.state.match;
-           match.changeTurn();
-           this.setState({match:match});
-           this.clickLine = (id) => {
-            if(this.state.match.currentTurn===0&&this.state.match.userInput)
-            {
-                var match = this.state.match;
-                match.play(id);
-                this.state.socket.emit('drawline',id);
-                this.setState({match:match});
-            }
-            }
-           break;
-
-           default: 
-           this.clickLine = (id)=>{
-            if(this.state.match.userInput)
-            {
-                var match = this.state.match;
-                match.play(id);
-                this.setState({match:match});
-                if(this.state.match.currentTurn===1)
-                this.setState({cpuPlayng:true});
-            }
-    };
-           break;
-       }
-    }
-
-    UNSAFE_componentWillReceiveProps(props) {
-        if(props.level!== this.state.currentlevel)
-        this.initGame(props,true);
-        else
-        {
-            //update online match
-            //set this player turn
-        }
-    }
-    
-    cpuPlay =()=>{
-
-        if (this.state.match.currentTurn===0||this.state.match.isOver()) {
-            this.setState({ cpuPlayng: false })
-            return
-        }
-        var match = this.state.match;
-        match.cpuPlay();
-        this.setState({match:match});
-                  
-    }
-
-    componentDidUpdate()
-    {
-       if(this.state.cpuPlayng)setTimeout(this.cpuPlay,this.PAUSE);
-    }
+    clickLine(){};
 
     getNewMatchManager(field,level,user,secondplayer)
     {
@@ -140,8 +39,6 @@ class GameField extends Component
             default: return new MatchManager(field, new UserPlayer(user,0),new UserPlayer(secondplayer,1));
         }
     }
-
-  
 
     linecolor(id){
         if(this.state.match.field.getLinePlayer(id)===0)
@@ -204,7 +101,6 @@ class GameField extends Component
                
         </div>
         <div className='field'>
-            
             { 
                 ys.map(ycount =>{
 
@@ -283,9 +179,8 @@ class GameField extends Component
 
     render()
     {
-        if(!this.state.user) return <Redirect to='/'></Redirect>
-        return(
-        this.gameField(this.state.x,this.state.y))
+        if(!this.state.user) return <Redirect to='/'></Redirect>;
+        return this.gameField(this.state.x,this.state.y);
     }
 }
 

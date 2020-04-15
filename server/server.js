@@ -77,7 +77,6 @@ io.on('connection', socket => {
       io.to(player.room).emit('secondplayerout');
       playerRemove(socket.id);
     }
-
   }
   );
 
@@ -92,6 +91,20 @@ io.on('connection', socket => {
     const player = getPlayer(socket.id);
     socket.broadcast.to(player.room).emit('drawline',id);
 
+  });
+
+  socket.on('playagain', (id)=>
+  {
+    const player = getPlayer(socket.id);
+    socket.broadcast.to(player.room).emit('playagain');
+
+  });
+
+  socket.on('reqaccepted', ()=>
+  {
+    const player = getPlayer(socket.id);
+    socket.broadcast.to(player.room).emit('startgame');
+    
   });
 
 })
